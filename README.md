@@ -35,7 +35,13 @@ You have 10 attempts to guess the code correctly. If you guess the code correctl
 
 ## Technologies Used
 
+### Frontend
+
 - React
+- Axios
+
+### Backend
+
 - Express
 - Axios
 - Mongoose
