@@ -1,0 +1,102 @@
+.App {
+  text-align: center;
+}
+
+/* CENTER */
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FONT CLASS */
+.quicksand {
+  font-family: Quicksand;
+}
+.bebas-neue {
+  font-family: Bebas Neue;
+}
+
+.font-1rem {
+  font-size: 1rem;
+}
+.font-1-25rem {
+  font-size: 1.5rem;
+}
+.font-2rem {
+  font-size: 2rem;
+}
+.font-3rem {
+  font-size: 3rem;
+}
+
+/* MARGIN CLASS */
+.margin-all {
+  margin: 1rem;
+}
+.margin-top-1rem {
+  margin-top: 1rem;
+}
+.margin-left-1rem {
+  margin-left: 1rem;
+}
+.margin-right-1rem {
+  margin-right: 1rem;
+}
+
+/* PADDING CLASS */
+.padding-all {
+  padding: 0.5rem;
+}
+.padding-top-1rem {
+  padding-top: 1rem;
+}
+.padding-button {
+  padding: 0.35rem 1rem;
+  cursor: pointer;
+  background-color: #edeeff;
+  border: #edeeff;
+  border-radius: 0.5rem;
+}
+.padding-button:hover {
+  padding: 0.35rem 1rem;
+  cursor: pointer;
+  background-color: #dbddff;
+  border: #dbddff;
+  border-radius: 0.5rem;
+}
+
+.button {
+  color: #7275a0;
+}
+
+/* INPUT CLASS */
+.input-box {
+  padding: 0.35rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+.input-box:focus {
+  padding: 0.35rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.feedback-header-guess {
+  width: 4rem;
+}
+
+.feedback-previous-guess {
+  font-style: italic;
+  font-size: 0.75rem;
+}
+
+.border {
+  margin: 2rem;
+  border: 0.25px solid #edeeff;
+}
