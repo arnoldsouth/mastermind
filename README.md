@@ -27,9 +27,9 @@ The objective of the game is to guess a secret code consisting of a series of co
 
 To play the game, enter your guess in the input field and submit. The computer will evaluate your guess in the form of X and O symbols, count them, and then display the number of digits (if any) that are correct and in the correct location:
 
-**_X: a correct number in the correct position_**
-**_O: a correct number in the wrong position_**
-**_-: incorrect number_**
+- **_X: a correct number in the correct position_**
+- **_O: a correct number in the wrong position_**
+- **_-: incorrect number_**
 
 You have 10 attempts to guess the code correctly. If you guess the code correctly before you run out of attempts, you win the game. Otherwise, the game is over and you lose.
 
