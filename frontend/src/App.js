@@ -11,7 +11,6 @@ import { AppProvider } from './context/appContext';
 
 function App() {
   return (
-    // created context for the application and wrapped everything inside the Provider
     <AppProvider>
       <Routes>
         <Route path="/" element={<Home />} />

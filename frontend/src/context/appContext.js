@@ -4,7 +4,6 @@ import {
   useState,
 } from 'react';
 
-// context created to manage difficulty state
 export const AppContext = createContext({
   difficultyLevel: "easy",
   setDifficultyLevel: () => {},

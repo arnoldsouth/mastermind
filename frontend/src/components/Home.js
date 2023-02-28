@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom';
 import { useApp } from '../context/appContext';
 
 const Home = () => {
-  // custom hook
   const { difficultyLevel, setDifficultyLevel } = useApp();
   const [gameStarted, setGameStarted] = useState(false);
-  // const [difficultyLevel, setDifficultyLevel] = useState("easy");
 
   function handleStartGame() {
     setGameStarted(true);
@@ -28,8 +26,9 @@ const Home = () => {
         Game Rules
       </div>
       <div className="align-left margin-top-1rem margin-left-1rem">
-        At the start of the game the computer will randomly select a pattern of
-        four different numbers from a total of 8 different numbers
+        At the start of the game, the computer will randomly select a pattern of
+        numbers based on the user's chosen difficulty level, from a total of 8
+        different numbers
       </div>
       <div className="align-left margin-top-1rem margin-left-1rem">
         A player will have 10 attempts to guess the number combinations
@@ -54,7 +53,7 @@ const Home = () => {
             htmlFor="difficultyLevel"
             className="bebas-neue font-1-25rem margin-right-1rem"
           >
-            Difficulty level:
+            Difficulty Level
           </label>
           <select
             id="difficultyLevel"

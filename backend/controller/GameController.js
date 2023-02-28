@@ -1,5 +1,5 @@
 const axios = require("axios");
-// const dbhelpers = require("../database/dbhelpers");
+
 const { generateSecretCode } = require("../util/index");
 const db = require("../database/db");
 
@@ -30,16 +30,6 @@ const controller = {
   },
 
   evaluateGuess: async (req, res) => {
-    // if i had more time, i'd create database services whose sole responsibility is to handle database queries, but because i'm exploring new technologies like mongoose's ORM and their documentation used callback functions, i stuck to their pattern
-
-    // req.body.secretCodeUid
-    // instead of { guess, secretCode }, you have { guess, secretCodeUid }
-    // make mongo query into collection to get id = secretCodeUid
-    // const secretCodeFromDb = collection.("whatever collection name").get(id=uid)
-    // instead of looping through secretCode from request, you loop through secretCodeFromDb
-    // ie: if (guess[i] === secretCodeFromDb[i]) {}
-
-    // console.log({ body: req.body });
     const { guess, secretCodeId } = req.body;
     console.log({ guess, secretCodeId });
 
@@ -47,17 +37,6 @@ const controller = {
       if (err) {
         console.log("Error querying mongodb: ", err);
       } else {
-        // console.log({
-        //   guessLength: guess.length,
-        //   codeLength: result,
-        // });
-        // if (typeof guess !== "object" || guess.length !== result.code.length) {
-        //   console.log({ guess });
-        //   res.status(400).send(`Error need ${result.code.length} digits`);
-
-        //   return;
-        // }
-
         console.log({ result });
         const secretCode = result.code;
         const feedback = [];

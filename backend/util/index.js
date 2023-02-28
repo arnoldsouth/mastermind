@@ -30,7 +30,6 @@ async function generateSecretCode(difficultyLevel) {
     .split("")
     .map((d) => parseInt(d));
 
-  // console.log("ASDJALKSDJLAKSDJSAD: ", secretCode);
   return secretCode;
 }
 
