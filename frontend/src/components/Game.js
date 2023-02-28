@@ -166,7 +166,8 @@ function Game() {
           </div>
 
           <div className="align-left margin-left-1rem">
-            The computer will generate random four digits from 0 to 7.
+            The computer will generate random digits based on chosen difficulty
+            level from numbers 0 to 7.
           </div>
         </>
       )}
