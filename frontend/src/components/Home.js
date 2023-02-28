@@ -46,14 +46,12 @@ const Home = () => {
             onClick={handleStartGame}
           >
             <Link className="button" to="/game">
+              {/* <Link className="button" to={`/game/${difficultyLevel}`}> */}
               Start
             </Link>
           </button>
         </div>
       )}
-
-      {/* {gameStarted && <Game />} */}
-      {/* {gameStarted} */}
     </div>
   );
 };
