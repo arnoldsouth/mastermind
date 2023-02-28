@@ -1,9 +1,21 @@
 const axios = require("axios");
 
-async function generateSecretCode() {
+async function generateSecretCode(difficultyLevel) {
+  let number;
+
+  if (difficultyLevel === "easy") {
+    number = 4;
+  }
+  if (difficultyLevel === "medium") {
+    number = 5;
+  }
+  if (difficultyLevel === "hard") {
+    number = 6;
+  }
+
   const response = await axios.get("https://www.random.org/integers/", {
     params: {
-      num: 4,
+      num: number,
       min: 0,
       max: 7,
       col: 1,
@@ -18,6 +30,7 @@ async function generateSecretCode() {
     .split("")
     .map((d) => parseInt(d));
 
+  // console.log("ASDJALKSDJLAKSDJSAD: ", secretCode);
   return secretCode;
 }
 

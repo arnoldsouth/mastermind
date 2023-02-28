@@ -65,3 +65,7 @@ The `Game` model defines the schema for the games collection in the database.
 The `db.js` file connects to the MongoDB database using Mongoose.
 
 The `util/index.js` file contains the generateSecretCode function, which generates a random 4-digit code.
+
+## Extensions Attempted
+
+- I attempted to add a configurable difficulty level feature to the Home screen. I wasn't able to successfully implement this feature as I couldn't figure out how to properly get the parameter to update from the user's frontend selection to update the backend `num` parameter without running into errors when generating the random integers.

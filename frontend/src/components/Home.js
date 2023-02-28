@@ -2,11 +2,20 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { useApp } from '../context/appContext';
+
 const Home = () => {
+  // custom hook
+  const { difficultyLevel, setDifficultyLevel } = useApp();
   const [gameStarted, setGameStarted] = useState(false);
+  // const [difficultyLevel, setDifficultyLevel] = useState("easy");
 
   function handleStartGame() {
     setGameStarted(true);
+  }
+
+  function handleDifficultyChange(event) {
+    setDifficultyLevel(event.target.value);
   }
 
   return (
@@ -41,12 +50,27 @@ const Home = () => {
 
       {!gameStarted && (
         <div className="margin-top-1rem">
+          <label
+            htmlFor="difficultyLevel"
+            className="bebas-neue font-1-25rem margin-right-1rem"
+          >
+            Difficulty level:
+          </label>
+          <select
+            id="difficultyLevel"
+            value={difficultyLevel}
+            onChange={handleDifficultyChange}
+          >
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
           <button
             className="bebas-neue font-1rem margin-top-1rem padding-button"
             onClick={handleStartGame}
           >
             <Link className="button" to="/game">
-              {/* <Link className="button" to={`/game/${difficultyLevel}`}> */}
               Start
             </Link>
           </button>

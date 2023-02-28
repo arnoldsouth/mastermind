@@ -5,7 +5,10 @@ import React, {
 
 import axios from 'axios';
 
+import { useApp } from '../context/appContext';
+
 function Game() {
+  const { difficultyLevel } = useApp();
   const [secretCodeId, setSecretCodeId] = useState([]);
   const [guess, setGuess] = useState("");
   const [guessHistory, setGuessHistory] = useState([]);
@@ -16,11 +19,12 @@ function Game() {
 
   useEffect(() => {
     generateSecretCode();
+    console.log({ difficultyLevel });
   }, []);
 
   const generateSecretCode = async () => {
     try {
-      const response = await axios.get("/api/game/code");
+      const response = await axios.get(`/api/game/code/${difficultyLevel}`);
       setSecretCodeId(response.data.id);
       setGuessHistory([]);
       setRemainingGuesses(10);
@@ -52,7 +56,11 @@ function Game() {
         setGuessHistory([...guessHistory, { guess, feedback }]);
         setFeedback(feedback);
 
-        if (feedback.join("") === "XXXX") {
+        if (
+          feedback.join("") === "XXXX" ||
+          feedback.join("") === "XXXXX" ||
+          feedback.join("") === "XXXXXX"
+        ) {
           setGameOver(true);
         } else {
           setRemainingGuesses(remainingGuesses - 1);
@@ -66,7 +74,13 @@ function Game() {
   };
 
   const validateGuess = (guess) => {
-    if (guess.length !== 4) {
+    if (difficultyLevel === "easy" && guess.length !== 4) {
+      return false;
+    }
+    if (difficultyLevel === "medium" && guess.length !== 5) {
+      return false;
+    }
+    if (difficultyLevel === "hard" && guess.length !== 6) {
       return false;
     }
     for (const num of guess) {
@@ -118,6 +132,18 @@ function Game() {
     return `${numCorrectNum} correct numbers and ${numCorrectLocation} correct location.`;
   };
 
+  const evalMaxCharacters = () => {
+    if (difficultyLevel === "easy") {
+      return 4;
+    }
+    if (difficultyLevel === "medium") {
+      return 5;
+    }
+    if (difficultyLevel === "hard") {
+      return 6;
+    }
+  };
+
   return (
     <div className="App">
       <div className="bebas-neue font-3rem margin-all">
@@ -160,7 +186,7 @@ function Game() {
                 type="text"
                 pattern="[0-9]*"
                 inputMode="numeric"
-                maxLength="4"
+                maxLength={evalMaxCharacters()}
                 onChange={handleGuessInput}
               />
               <button
@@ -190,7 +216,9 @@ function Game() {
       {gameOver && (
         <div className="bebas-neue font-2rem margin-top-1rem">
           <p>
-            {feedback.join("") === "XXXX"
+            {feedback.join("") === "XXXX" ||
+            feedback.join("") === "XXXXX" ||
+            feedback.join("") === "XXXXXX"
               ? "Congratulations, you won!"
               : `Game over. The secret code was ${winningSecretCode.join(" ")}`}
           </p>

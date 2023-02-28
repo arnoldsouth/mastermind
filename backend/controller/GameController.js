@@ -11,7 +11,10 @@ const controller = {
   },
 
   getSecretCode: async (req, res) => {
-    const code = await generateSecretCode();
+    const { difficultyLevel } = req.params;
+    console.log({ difficultyLevel });
+
+    const code = await generateSecretCode(difficultyLevel);
     console.log({ secretCode: code });
 
     const game = new Game({ code });
@@ -38,32 +41,37 @@ const controller = {
 
     // console.log({ body: req.body });
     const { guess, secretCodeId } = req.body;
-    console.log({ guess });
-    if (typeof guess !== "object" || guess.length !== 4) {
-      console.log({ guess });
-      res.status(400).send("Error need 4 digits");
-
-      return;
-    }
+    console.log({ guess, secretCodeId });
 
     Game.findById(secretCodeId, (err, result) => {
       if (err) {
         console.log("Error querying mongodb: ", err);
       } else {
+        // console.log({
+        //   guessLength: guess.length,
+        //   codeLength: result,
+        // });
+        // if (typeof guess !== "object" || guess.length !== result.code.length) {
+        //   console.log({ guess });
+        //   res.status(400).send(`Error need ${result.code.length} digits`);
+
+        //   return;
+        // }
+
         console.log({ result });
         const secretCode = result.code;
         const feedback = [];
 
         const usedIndexes = new Set();
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < secretCode.length; i++) {
           if (guess[i] === secretCode[i]) {
             feedback.push("X");
             usedIndexes.add(i);
           }
         }
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < secretCode.length; i++) {
           if (usedIndexes.has(i)) {
             continue;
           }
@@ -76,7 +84,7 @@ const controller = {
           }
         }
 
-        while (feedback.length < 4) {
+        while (feedback.length < secretCode.length) {
           feedback.push("-");
         }
 
